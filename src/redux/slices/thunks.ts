@@ -1,6 +1,6 @@
 import { loadPokemonsApi } from '../../services';
 import { IPokemonState } from '../interfaces';
-import { setLoading, setPokemonList } from './pokemonSlice';
+import { setLoading, setPokemonFilterList, setPokemonList } from './pokemonSlice';
 import { Pokemon } from '../interfaces/pokemon';
 
 
@@ -16,23 +16,21 @@ export const loadPokemons = (): any => {
 
 export const addPokemonBattle = (id: string): any => {
   return (dispatch: any, getState: any) => {
-    console.log({ id });
     const { pokemon } = getState();
-    const { battleList, pokemonList } = pokemon;
+    const { pokemonList, filterList } = pokemon;
     const newPokemonList = pokemonList.map((pokemon: Pokemon) => {
       if (pokemon.id === id) {
         return { ...pokemon, isBattle: true };
       }
       return pokemon;
-    })
-
+    });
     dispatch(setPokemonList(newPokemonList));
+    dispatch(setPokemonFilterList([]));
   };
 };
 
 export const removePokemonBattle = (id: string) => {
   return (dispatch: any, getState: any) => {
-    console.log({ id });
     const { pokemon } = getState();
     const { battleList, pokemonList } = pokemon;
     const newPokemonList = pokemonList.map((pokemon: Pokemon) => {
@@ -44,5 +42,23 @@ export const removePokemonBattle = (id: string) => {
 
     dispatch(setPokemonList(newPokemonList));
   };
+};
 
-}
+
+export const searchPokemonForName = (value: string) => {
+  return (dispatch: any, getState: any) => {
+    console.log({ value });
+    const { pokemon } = getState();
+    const { pokemonList } = pokemon;
+    if (value.length > 0) {
+      const newPokemonList = pokemonList.filter((pokemon: Pokemon) => {
+        if (pokemon.nombre.includes(value) && !pokemon.isBattle) {
+          return pokemon;
+        }
+      });
+      dispatch(setPokemonFilterList(newPokemonList));
+    }else{
+      dispatch(setPokemonFilterList([]));
+    }
+  };
+};

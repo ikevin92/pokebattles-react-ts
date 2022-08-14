@@ -4,7 +4,7 @@ import { CardPokemon } from '.';
 
 export const ListPokemon = () => {
   const dispatch = useAppDispatch();
-  const { isLoading, pokemonList } = useAppSelector(state => state.pokemon);
+  const { isLoading, pokemonList, filterList } = useAppSelector(state => state.pokemon);
   console.log(`🚀 ~ file: ListPokemon.tsx ~ line 10 ~ ListPokemon ~ pokemonList`, pokemonList);
   // const [pokemon, setPokemon] = useState([]);
 
@@ -23,14 +23,24 @@ export const ListPokemon = () => {
         <div className='row row-cols-4'>
 
           {
-            pokemonList.map((pokemon) => {
-              if (!pokemon.isBattle) {
-                return (
-                  <CardPokemon key={ pokemon.id } pokemon={ pokemon } />
-                );
-              }
-            }
-            )
+            filterList.length >0 ?
+              (filterList.map((pokemon) => {
+                if (!pokemon.isBattle) {
+                  return (
+                    <CardPokemon key={ pokemon.id } pokemon={ pokemon } />
+                  );
+                }
+              })
+              )
+              :
+              (pokemonList.map((pokemon) => {
+                if (!pokemon.isBattle) {
+                  return (
+                    <CardPokemon key={ pokemon.id } pokemon={ pokemon } />
+                  );
+                }
+              })
+              )
           }
         </div>
       </div>

@@ -26,5 +26,6 @@ export interface IPokemonState {
   pokemonDetail: PokemonDetails;
   pokemonList: Pokemon[];
   battleList: Pokemon[];
+  filterList: Pokemon[];
   isLoading: boolean;
 }

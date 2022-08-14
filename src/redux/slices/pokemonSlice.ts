@@ -9,6 +9,7 @@ const initialState: IPokemonState = {
   pokemonList: [],
   battleList: [],
   isLoading: false,
+  filterList: [],
 };
 
 export const pokemonSlice = createSlice({
@@ -24,12 +25,15 @@ export const pokemonSlice = createSlice({
     setPokemonBattleList: (state, action: PayloadAction<Pokemon[]>) => {
       state.battleList = action.payload;
     },
+    setPokemonFilterList: (state, action: PayloadAction<Pokemon[]>) => {
+      state.filterList = action.payload;
+    },
     setLoading: (state, action: PayloadAction<boolean>) => {
       state.isLoading = action.payload;
     }
   }
 });
 
-export const { setPokemon, setPokemonList, setPokemonBattleList, setLoading } = pokemonSlice.actions;
+export const { setPokemon, setPokemonList, setPokemonBattleList, setLoading, setPokemonFilterList } = pokemonSlice.actions;
 
 export default pokemonSlice.reducer;

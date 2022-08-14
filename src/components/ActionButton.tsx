@@ -15,6 +15,7 @@ export const ActionButton: FC<Props> = ({ id, isBattle, isActive }) => {
   const handleAddBattleList = (id: string) => {
     console.log(id);
     dispatch(addPokemonBattle(id));
+    
   };
 
   const handleRemoveBattleList = (id: string) => {
