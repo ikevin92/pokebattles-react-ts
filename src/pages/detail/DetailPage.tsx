@@ -10,13 +10,13 @@ export const DetailPage = () => {
 
   const navigate = useNavigate();
   const params = useParams();
-
+  const [isBattle, setIsBattle] = useState(false);
   const [loading, setLoading] = useState<boolean>(false);
   const [pokeInfo, setPokeInfo] = useState<IPokemonDetail | null>(null);
 
   const { pokemonList } = useAppSelector(state => state.pokemon);
 
-  const getPokemon = async (id = '1') => {
+  const getPokemon = async () => {
     setLoading(true);
     const response: IPokemonDetail = await loadPokemonByIdTerm(params.id as string);
     setPokeInfo(response);
@@ -24,13 +24,32 @@ export const DetailPage = () => {
     setLoading(false);
   };
 
+  const validaBattle = () => {
+    const filter = pokemonList.filter(pokemon => pokemon.id === params.id && pokemon.isBattle).length > 0;
+    if (filter) {
+      setIsBattle(true);
+    } else {
+      setIsBattle(false);
+    }
+  };
+
   const isActive = useMemo(() => pokemonList.filter(pokemon => pokemon.isBattle).length < 6, [pokemonList]);
 
-  const isBattle = useMemo(() => pokemonList.filter(pokemon => +pokemon.id === pokeInfo?.numero && pokemon.isBattle).length > 0, [pokemonList]);
+  useEffect(() => {
+    getPokemon();
+    validaBattle();
+  }, []);
 
   useEffect(() => {
-    getPokemon(params.id);
-  }, []);
+    getPokemon();
+    validaBattle();
+  }, [pokemonList]);
+
+  useEffect(() => {
+    getPokemon();
+    validaBattle();
+  }, [params.id]);
+
 
   if (loading) return <div>Loading...</div>;
 
