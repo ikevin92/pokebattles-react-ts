@@ -1,7 +1,7 @@
 import { FC, useMemo, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { ActionButton } from '.';
-import { getPokemonDetail, Pokemon, useAppDispatch, useAppSelector } from '../redux';
+import { Pokemon, useAppDispatch, useAppSelector } from '../redux';
 
 
 interface Props {
@@ -27,7 +27,6 @@ export const CardPokemon: FC<Props> = ({ pokemon }) => {
 
   const handleOnClick = (id: string) => {
     console.log('click_card', { id });
-    dispatch(getPokemonDetail(id as string));
     navigate(`/detail/${ id }`);
   };
 
@@ -35,7 +34,7 @@ export const CardPokemon: FC<Props> = ({ pokemon }) => {
 
   return (
     <div className='col g-2 position-relative'>
-        <ActionButton id={ id } isBattle={ isBattle } isActive={ isActive }
+        <ActionButton card id={ id } isBattle={ isBattle } isActive={ isActive }
         />
       <div
         onClick={ () => handleOnClick(id) }

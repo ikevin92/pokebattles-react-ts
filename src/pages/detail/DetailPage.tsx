@@ -1,16 +1,38 @@
-import { useNavigate } from 'react-router-dom';
-import { CardDetail } from '../../components';
+import { useEffect, useMemo, useState } from 'react';
+import { useNavigate, useParams } from 'react-router-dom';
+import { ActionButton, CardDetail } from '../../components';
 import { useAppSelector } from '../../redux';
+import { loadPokemonByIdTerm } from '../../services';
+import { IPokemonDetail } from '../../redux/interfaces/pokemon';
 
 
 export const DetailPage = () => {
 
-  const { pokemonDetail, isLoading } = useAppSelector(state => state.pokemon);
-  console.log(`🚀 ~ file: DetailPage.tsx ~ line 11 ~ DetailPage ~ pokemonDetail`, pokemonDetail);
-
   const navigate = useNavigate();
+  const params = useParams();
 
-  if (isLoading && !pokemonDetail) return <div>Loading...</div>;
+  const [loading, setLoading] = useState<boolean>(false);
+  const [pokeInfo, setPokeInfo] = useState<IPokemonDetail | null>(null);
+
+  const { pokemonList } = useAppSelector(state => state.pokemon);
+
+  const getPokemon = async (id = '1') => {
+    setLoading(true);
+    const response: IPokemonDetail = await loadPokemonByIdTerm(params.id as string);
+    setPokeInfo(response);
+
+    setLoading(false);
+  };
+
+  const isActive = useMemo(() => pokemonList.filter(pokemon => pokemon.isBattle).length < 6, [pokemonList]);
+
+  const isBattle = useMemo(() => pokemonList.filter(pokemon => +pokemon.id === pokeInfo?.numero && pokemon.isBattle).length > 0, [pokemonList]);
+
+  useEffect(() => {
+    getPokemon(params.id);
+  }, []);
+
+  if (loading) return <div>Loading...</div>;
 
   return (
     <div className='container'>
@@ -23,15 +45,22 @@ export const DetailPage = () => {
           </button>
         </div>
         <div className="col-7">
-          <CardDetail />
+          {
+            pokeInfo && !loading ? (
+              <CardDetail pokemon={ pokeInfo } />
+            )
+              : <p>Loading...</p>
+          }
         </div>
         <div className="col-2">
-          <button type="button" className="btn btn-success">Agregar a la lista</button>
+          <ActionButton
+            id={ `${ pokeInfo?.numero }` }
+            isBattle={ isBattle }
+            isActive={ isActive }
+            card={ false }
+          />
         </div>
-
       </div>
-
-
     </div>
   );
 };

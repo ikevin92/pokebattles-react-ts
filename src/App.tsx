@@ -3,8 +3,9 @@
 import { HomePage } from './pages';
 import { ListBattle } from './components/ListBattle';
 import { BattleView } from './components';
-import { Route, Routes } from 'react-router-dom';
+import { Navigate, Route, Routes } from 'react-router-dom';
 import { DetailPage } from './pages/detail/DetailPage';
+import { AppRouter } from './router';
 
 
 function App() {
@@ -19,11 +20,12 @@ function App() {
         <div className='col-8 shadow'
           // style={ { border: '1px solid white' } }
         >
-          <Routes>
+          {/* <Routes>
             <Route path="/" element={ <HomePage /> } />
-            <Route path="detail/:id" element={ <DetailPage /> } />
-          </Routes>
-
+            <Route path="/:id" element={ <DetailPage /> } />
+            <Route path="/*" element={ <Navigate to="/" /> } />
+          </Routes> */}
+          <AppRouter />
         </div>
         <div className='col-4 bg-primary'
           // style={ { border: '1px solid blue' } }
