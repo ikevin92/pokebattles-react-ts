@@ -1,4 +1,4 @@
-export interface PokemonDetails {
+export interface IPokemonDetail {
   imagen: string;
   nombre: string;
   numero: number;
@@ -23,7 +23,7 @@ export interface Pokemon {
 }
 
 export interface IPokemonState {
-  pokemonDetail: PokemonDetails;
+  pokemonDetail: IPokemonDetail;
   pokemonList: Pokemon[];
   battleList: Pokemon[];
   filterList: Pokemon[];

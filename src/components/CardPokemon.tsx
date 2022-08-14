@@ -1,7 +1,7 @@
-import { FC, useEffect, useMemo, useState } from 'react';
+import { FC, useMemo, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { ActionButton } from '.';
-import { addPokemonBattle, Pokemon, removePokemonBattle, useAppDispatch, useAppSelector } from '../redux';
+import { getPokemonDetail, Pokemon, useAppDispatch, useAppSelector } from '../redux';
 
 
 interface Props {
@@ -12,6 +12,7 @@ interface Props {
 export const CardPokemon: FC<Props> = ({ pokemon }) => {
   const { id, imagen, nombre, isBattle } = pokemon;
   const navigate = useNavigate();
+  const dispatch = useAppDispatch()
   const { pokemonList } = useAppSelector(state => state.pokemon);
 
   const [isHover, setIsHover] = useState(false);
@@ -26,6 +27,7 @@ export const CardPokemon: FC<Props> = ({ pokemon }) => {
 
   const handleOnClick = (id: string) => {
     console.log('click_card', { id });
+    dispatch(getPokemonDetail(id as string));
     navigate(`/detail/${ id }`);
   };
 

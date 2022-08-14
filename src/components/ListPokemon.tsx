@@ -1,16 +1,16 @@
 import { useEffect } from 'react';
-import { loadPokemons, useAppDispatch, useAppSelector } from '../redux';
 import { CardPokemon } from '.';
+import { loadPokemons, useAppDispatch, useAppSelector } from '../redux';
 
 export const ListPokemon = () => {
   const dispatch = useAppDispatch();
   const { isLoading, pokemonList, filterList } = useAppSelector(state => state.pokemon);
-  console.log(`🚀 ~ file: ListPokemon.tsx ~ line 10 ~ ListPokemon ~ pokemonList`, pokemonList);
-  // const [pokemon, setPokemon] = useState([]);
 
   useEffect(() => {
-    dispatch(loadPokemons());
-  }, [dispatch]);
+    if (pokemonList.length === 0) {
+      dispatch(loadPokemons());
+    }
+  }, []);
 
   if (isLoading) {
     return <div>Loading...</div>;

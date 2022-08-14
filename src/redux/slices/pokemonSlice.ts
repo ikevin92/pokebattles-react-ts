@@ -1,11 +1,11 @@
-import { createSlice } from '@reduxjs/toolkit';
 import type { PayloadAction } from '@reduxjs/toolkit';
+import { createSlice } from '@reduxjs/toolkit';
 // import { RootState } from '../store/';
-import { IPokemonState, Pokemon, PokemonDetails } from '../interfaces';
+import { IPokemonDetail, IPokemonState, Pokemon } from '../interfaces';
 
 
 const initialState: IPokemonState = {
-  pokemonDetail: {} as PokemonDetails,
+  pokemonDetail: {} as IPokemonDetail,
   pokemonList: [],
   battleList: [],
   isLoading: false,
@@ -16,7 +16,7 @@ export const pokemonSlice = createSlice({
   name: 'pokemon',
   initialState,
   reducers: {
-    setPokemon: (state, action: PayloadAction<PokemonDetails>) => {
+    setPokemonDetail: (state, action: PayloadAction<IPokemonDetail>) => {
       state.pokemonDetail = action.payload;
     },
     setPokemonList: (state, action: PayloadAction<Pokemon[]>) => {
@@ -34,6 +34,6 @@ export const pokemonSlice = createSlice({
   }
 });
 
-export const { setPokemon, setPokemonList, setPokemonBattleList, setLoading, setPokemonFilterList } = pokemonSlice.actions;
+export const { setPokemonDetail, setPokemonList, setPokemonBattleList, setLoading, setPokemonFilterList } = pokemonSlice.actions;
 
 export default pokemonSlice.reducer;

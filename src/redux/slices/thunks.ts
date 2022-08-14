@@ -1,7 +1,7 @@
-import { loadPokemonsApi } from '../../services';
+import { loadPokemonByIdTerm, loadPokemonsApi } from '../../services';
 import { IPokemonState } from '../interfaces';
-import { setLoading, setPokemonFilterList, setPokemonList } from './pokemonSlice';
 import { Pokemon } from '../interfaces/pokemon';
+import { setLoading, setPokemonDetail, setPokemonFilterList, setPokemonList } from './pokemonSlice';
 
 
 
@@ -50,6 +50,7 @@ export const searchPokemonForName = (value: string) => {
     console.log({ value });
     const { pokemon } = getState();
     const { pokemonList } = pokemon;
+
     if (value.length > 0) {
       const newPokemonList = pokemonList.filter((pokemon: Pokemon) => {
         if (pokemon.nombre.includes(value) && !pokemon.isBattle) {
@@ -62,3 +63,13 @@ export const searchPokemonForName = (value: string) => {
     }
   };
 };
+
+export const getPokemonDetail = (id: string) => {
+  return async (dispatch: any, getState: any) => {
+    dispatch(setLoading(true));
+    const pokemon = await loadPokemonByIdTerm(id);
+    console.log(`🚀 ~ file: thunks.ts ~ line 71 ~ return ~ pokemon`, pokemon);
+    dispatch(setPokemonDetail(pokemon));
+    dispatch(setLoading(false));
+  }
+}

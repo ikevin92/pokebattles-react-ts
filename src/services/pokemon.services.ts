@@ -19,9 +19,8 @@ export const loadPokemonsApi = async (): Promise<Pokemon[] | any> => {
 };
 
 
-export const loadPokemonByIdTerm = async (term: string) => {
+export const loadPokemonByIdTerm = async (term: string): Promise<PokemonResponse| any> => {
 
-  if (!term) throw new Error('No se ha ingresado un termino de busqueda');
 
   try {
     const { data } = await pokeApi.get<PokemonResponse>(`/pokemon/${ term }`);

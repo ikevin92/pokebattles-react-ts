@@ -1,7 +1,7 @@
 import { PokemonListResponse, PokemonResponse } from '../interface';
-import { Pokemon, PokemonDetails } from '../redux';
+import { IPokemonDetail, Pokemon } from '../redux';
 
-export const pokemonDetailAdapter = (pokemon: PokemonResponse): PokemonDetails => {
+export const pokemonDetailAdapter = (pokemon: PokemonResponse): IPokemonDetail => {
   console.log({ pokemon });
 
   return {
