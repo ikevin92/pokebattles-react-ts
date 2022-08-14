@@ -9,7 +9,7 @@ function App() {
 
   return (
     <div className='container-fluid text-center h-auto'>
-      <div className='row align-items-start justify-content-between'>
+      <div className='row justify-content-between'>
         <div className='container-sm col-8'
           style={ { border: '1px solid white' } }
         >

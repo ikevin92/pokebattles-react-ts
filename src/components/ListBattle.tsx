@@ -1,4 +1,4 @@
-import { useEffect } from 'react';
+import { useEffect, useMemo, useState } from 'react';
 import { loadPokemons, useAppDispatch, useAppSelector } from '../redux';
 import { CardPokemon } from './CardPokemon';
 
@@ -6,16 +6,16 @@ export const ListBattle = () => {
   const dispatch = useAppDispatch();
   const { isLoading, pokemonList } = useAppSelector(state => state.pokemon);
   console.log(`🚀 ~ file: ListPokemon.tsx ~ line 10 ~ ListPokemon ~ pokemonList`, pokemonList);
-  // const [pokemon, setPokemon] = useState([]);
 
   if (isLoading) {
     return <div>Loading...</div>;
   }
 
+
   if (pokemonList.filter(pokemon => pokemon.isBattle).length === 0) {
     return (
-      <div className=''>
-        <h4>Lista vacia, no hay ningun pokemon listo
+      <div className='container-fluid vh-100 row align-items-center justify-content-center flex-row'>
+        <h4 className='col'>Lista vacia, no hay ningun pokemon listo
         </h4>
       </div>
     );

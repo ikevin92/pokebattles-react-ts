@@ -32,7 +32,7 @@ export const pokemonListAdapter = (pokemons: PokemonListResponse): Pokemon[] => 
 };
 
 
-const extraerId = (url: string): string | number => {
+const extraerId = (url: string): string => {
   let id = '';
   const urlArray = url.split('/');
   id = urlArray[urlArray.length - 2];

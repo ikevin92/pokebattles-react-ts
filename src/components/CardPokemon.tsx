@@ -1,49 +1,42 @@
-import { FC, useEffect, useState } from 'react';
-import { addPokemonBattle, Pokemon, removePokemonBattle, useAppDispatch } from '../redux';
+import { FC, useEffect, useMemo, useState } from 'react';
+import { ActionButton } from '.';
+import { addPokemonBattle, Pokemon, removePokemonBattle, useAppDispatch, useAppSelector } from '../redux';
 
 
 interface Props {
   pokemon: Pokemon;
 }
 
+
 export const CardPokemon: FC<Props> = ({ pokemon }) => {
   const { id, imagen, nombre, isBattle } = pokemon;
-  const dispatch = useAppDispatch()
+  const { pokemonList } = useAppSelector(state => state.pokemon);
 
-  const handleAddBattleList = (id: string) => {
-    console.log(id);
-    dispatch(addPokemonBattle(id));
+  const [isHover, setIsHover] = useState(false);
+
+  const handleMouseEnter = () => {
+    setIsHover(true);
+  };
+  
+  const handleMouseLeave = () => {
+    setIsHover(false);
   };
 
-  const handleRemoveBattleList = (id: string) => {
-    console.log(id);
-    dispatch(removePokemonBattle(id));
-  };
+  const isActive = useMemo(() => pokemonList.filter(pokemon => pokemon.isBattle).length < 6, [pokemonList]);
 
   return (
     <div className='col g-2'>
-      {/* <img src={ imagen } className="img-thumbnail" alt={ nombre } />
-      <p>{ nombre }</p> */}
-      <div className="card shadow">
+      <div className={`card shadow ${isHover ? 'bg-transparent' : ''}`}
+        style={ { cursor: 'pointer' } }
+        onMouseEnter={ handleMouseEnter }
+        onMouseLeave={ handleMouseLeave }
+      >
         <img src={ imagen } className="bd-placeholder-img card-img-top" alt={ nombre } />
-        {
-          isBattle ?
-            (<button
-              onClick={ () => handleRemoveBattleList(id) }
-              type="button" className="btn btn-danger position-absolute rounded-circle m-1 top-0 end-0">
-              <i className="fa-solid fa-trash-can"></i>
-            </button>) :
-            (<button
-              onClick={ () => handleAddBattleList(id) }
-              type="button" className="btn btn-success position-absolute rounded-circle m-1 top-0 end-0">
-              <i className="fa-solid fa-plus"></i>
-            </button>)
-        }
+        <ActionButton id={ id } isBattle={ isBattle } isActive={ isActive } />
         <div className="card-body">
           <p className="card-text">{ nombre }</p>
         </div>
       </div>
-
     </div>
   );
 };

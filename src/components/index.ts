@@ -1,3 +1,4 @@
+export * from './ActionButton';
 export * from './BattleView';
 export * from './Buscardor';
 export * from './CardPokemon';

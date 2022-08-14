@@ -1,6 +1,6 @@
 import { useEffect } from 'react';
 import { loadPokemons, useAppDispatch, useAppSelector } from '../redux';
-import { CardPokemon } from './CardPokemon';
+import { CardPokemon } from '.';
 
 export const ListPokemon = () => {
   const dispatch = useAppDispatch();

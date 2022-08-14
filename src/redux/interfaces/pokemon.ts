@@ -19,7 +19,7 @@ export interface Pokemon {
   id: string;
   nombre: string;
   imagen: string;
-  isBattle?: boolean;
+  isBattle: boolean;
 }
 
 export interface IPokemonState {
