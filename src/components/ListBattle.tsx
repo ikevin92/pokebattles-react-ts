@@ -1,16 +1,13 @@
-import { useEffect, useMemo, useState } from 'react';
-import { loadPokemons, useAppDispatch, useAppSelector } from '../redux';
+import { useAppDispatch, useAppSelector } from '../redux';
 import { CardPokemon } from './CardPokemon';
 
 export const ListBattle = () => {
   const dispatch = useAppDispatch();
   const { isLoading, pokemonList } = useAppSelector(state => state.pokemon);
-  console.log(`🚀 ~ file: ListPokemon.tsx ~ line 10 ~ ListPokemon ~ pokemonList`, pokemonList);
 
   if (isLoading) {
     return <div>Loading...</div>;
   }
-
 
   if (pokemonList.filter(pokemon => pokemon.isBattle).length === 0) {
     return (

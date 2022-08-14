@@ -13,7 +13,7 @@ export const loadPokemonsApi = async (): Promise<Pokemon[] | any> => {
     const pokemons = pokemonListAdapter(data);
     return pokemons;
   } catch (error) {
-    console.log({ error });
+    console.error({ error });
     return error;
   }
 };
@@ -24,13 +24,12 @@ export const loadPokemonByIdTerm = async (term: string): Promise<PokemonResponse
 
   try {
     const { data } = await pokeApi.get<PokemonResponse>(`/pokemon/${ term }`);
-    console.log(`🚀 ~ file: pokemon.services.ts ~ line 31 ~ loadPokemonByIdTerm ~ data`, data);
 
     const pokemon = pokemonDetailAdapter(data);
 
     return pokemon;
   } catch (error) {
-    console.log({ error });
+    console.error({ error });
     return error;
   }
 

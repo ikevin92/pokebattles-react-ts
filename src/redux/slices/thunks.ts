@@ -47,7 +47,6 @@ export const removePokemonBattle = (id: string) => {
 
 export const searchPokemonForName = (value: string) => {
   return (dispatch: any, getState: any) => {
-    console.log({ value });
     const { pokemon } = getState();
     const { pokemonList } = pokemon;
 
@@ -68,7 +67,6 @@ export const getPokemonDetail = (id: string) => {
   return async (dispatch: any, getState: any) => {
     dispatch(setLoading(true));
     const pokemon = await loadPokemonByIdTerm(id);
-    console.log(`🚀 ~ file: thunks.ts ~ line 71 ~ return ~ pokemon`, pokemon);
     dispatch(setPokemonDetail(pokemon));
     dispatch(setLoading(false));
   }

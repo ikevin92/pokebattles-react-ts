@@ -26,7 +26,6 @@ export const CardPokemon: FC<Props> = ({ pokemon }) => {
   };
 
   const handleOnClick = (id: string) => {
-    console.log('click_card', { id });
     navigate(`/detail/${ id }`);
   };
 

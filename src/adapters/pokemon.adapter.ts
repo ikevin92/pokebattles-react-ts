@@ -2,7 +2,6 @@ import { PokemonListResponse, PokemonResponse } from '../interface';
 import { IPokemonDetail, Pokemon } from '../redux';
 
 export const pokemonDetailAdapter = (pokemon: PokemonResponse): IPokemonDetail => {
-  console.log({ pokemon });
 
   return {
     imagen: pokemon.sprites.front_default,
@@ -21,7 +20,6 @@ export const pokemonDetailAdapter = (pokemon: PokemonResponse): IPokemonDetail =
 };
 
 export const pokemonListAdapter = (pokemons: PokemonListResponse): Pokemon[] => {
-  console.log({ pokemons });
 
   return pokemons.results.map(pokemon => ({
     id: extraerId(pokemon.url),

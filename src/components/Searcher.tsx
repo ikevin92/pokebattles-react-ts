@@ -10,10 +10,8 @@ export const Searcher = () => {
   const { pokemonList } = useAppSelector(state => state.pokemon);
 
   const handleOnChange = (e: ChangeEvent<HTMLInputElement>) => {
-    console.log(e.target.value);
     setInputValue(e.target.value);
     if (inputValue.length > 0) {
-      console.log('esta cumpliendo la condicion');
       dispatch(searchPokemonForName(inputValue));
     }
   };

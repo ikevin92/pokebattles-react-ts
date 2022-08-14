@@ -12,24 +12,17 @@ interface Props {
 export const ActionButton: FC<Props> = ({ id, isBattle, isActive, card }) => {
   const dispatch = useAppDispatch();
 
-
-
-
   const handleAddBattleList = (id: string) => {
-    console.log(id);
     dispatch(addPokemonBattle(id));
 
   };
 
   const handleRemoveBattleList = (id: string) => {
-    console.log(id);
     dispatch(removePokemonBattle(id));
   };
 
   if (!card) {
-    console.log('card');
-    console.log({ isBattle });
-    console.log({ isActive });
+
     if (isBattle) {
       return (
         <button type="button" className="btn btn-danger" onClick={ () => handleRemoveBattleList(id) }>
