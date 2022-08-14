@@ -1,4 +1,4 @@
-import { Buscador, ListPokemon } from '../../components';
+import { Searcher, ListPokemon } from '../../components';
 
 
 
@@ -6,7 +6,7 @@ export const HomePage = () => {
   return (
 
     <>
-      <Buscador />
+      <Searcher />
       <ListPokemon />
     </>
   );

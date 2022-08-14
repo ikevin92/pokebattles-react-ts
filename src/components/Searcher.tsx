@@ -3,7 +3,7 @@ import { searchPokemonForName } from '../redux';
 import { useAppDispatch, useAppSelector } from '../redux';
 
 
-export const Buscador = () => {
+export const Searcher = () => {
 
   const [inputValue, setInputValue] = useState('');
   const dispatch = useAppDispatch();
