@@ -1,4 +1,4 @@
-# Pokedex By Kevin Echeverri
+# Pokedex Battles By Kevin Echeverri
 
 1. Instalar dependencias
 ```
