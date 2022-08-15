@@ -55,11 +55,10 @@ export const searchPokemonForName = (value: string) => {
 
     if (value.length > 0) {
       const newPokemonList = pokemonList.filter((pokemon: Pokemon) => {
-        if (pokemon.nombre.includes(value) && !pokemon.isBattle) {
+        if ((pokemon.nombre.includes(value) || pokemon.id.includes(value)) && !pokemon.isBattle) {
           return pokemon;
         }
       });
-      console.log(`🚀 ~ file: thunks.ts ~ line 59 ~ newPokemonList ~ newPokemonList`, newPokemonList);
       dispatch(setPokemonFilterList(newPokemonList));
       // dispatch(setSearcherValue(true));
     } else {
