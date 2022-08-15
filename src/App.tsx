@@ -11,7 +11,10 @@ function App() {
     >
       <div className='vh-100 row align-items-stretch'
       >
-        <div className='col-8 shadow overflow-scroll vh-100'
+        <div className='col-8 shadow vh-100'
+          style={ {
+            overflow: 'auto',
+          }}
         >
           <AppRouter />
         </div>
