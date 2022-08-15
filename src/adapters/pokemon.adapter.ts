@@ -24,7 +24,8 @@ export const pokemonListAdapter = (pokemons: PokemonListResponse): Pokemon[] => 
   return pokemons.results.map(pokemon => ({
     id: extraerId(pokemon.url),
     nombre: pokemon.name,
-    imagen: `https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/${ extraerId(pokemon.url) }.png`,
+    // imagen: `https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/${ extraerId(pokemon.url) }.png`,
+    imagen: `https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/${ extraerId(pokemon.url) }.png`,
     isBattle: false,
   }));
 };
