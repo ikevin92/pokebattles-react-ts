@@ -79,7 +79,13 @@ export const getPokemonDetail = (id: string) => {
 
 export const getValueSearcher = (value: boolean) => {
   return (dispatch: any, getState: any) => {
+    console.log('entro aqui');
+    const { pokemon } = getState();
+    const { pokemonList } = pokemon;
     dispatch(setSearcherValue(value));
+    if (!value) {
+      dispatch(setPokemonFilterList([]));
+    }
   };
 
 };
