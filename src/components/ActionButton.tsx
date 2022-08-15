@@ -47,7 +47,7 @@ export const ActionButton: FC<Props> = ({ id, isBattle, isActive, card }) => {
       return (
         <button
           onClick={ () => handleRemoveBattleList(id) }
-          type="button" className="btn btn-danger position-absolute rounded-circle m-3 top-0 end-0"
+          type="button" className="btn btn-danger position-absolute rounded-circle m-3 top-0 end-0 btn-sm"
           style={ { zIndex: 1 } }
         >
           <i className="fa-solid fa-trash-can"></i>
@@ -59,7 +59,7 @@ export const ActionButton: FC<Props> = ({ id, isBattle, isActive, card }) => {
       return (
         <button
           onClick={ () => handleAddBattleList(id) }
-          type="button" className="btn btn-success position-absolute rounded-circle m-3 top-0 end-0"
+          type="button" className="btn btn-success position-absolute rounded-circle m-3 top-0 end-0 btn-sm"
           style={ { zIndex: 1 } }
         >
           <i className="fa-solid fa-plus"></i>

@@ -22,7 +22,7 @@ export const ListBattle = () => {
     <div className='album'>
 
       <div className='container'>
-        <div className='row row-cols-2 p-1'>
+        <div className='row  row-cols-sm-1 row-cols-md-2 p-1'>
 
           {
             pokemonList.map((pokemon) => {

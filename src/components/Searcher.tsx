@@ -28,7 +28,7 @@ export const Searcher = () => {
   }, [pokemonList]);
 
   return (
-    <div className="container form-group p-5 sticky-top bg-body">
+    <div className="container form-group p-md-5 p-0 sticky-top bg-body">
       <input
         onChange={ (e) => handleOnChange(e) }
         value={ inputValue }
