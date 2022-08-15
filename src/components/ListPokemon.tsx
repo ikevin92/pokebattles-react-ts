@@ -18,14 +18,17 @@ export const ListPokemon = () => {
 
   return (
     <div className='album bg-body'>
-
       <div className='container'>
+        {
+          filterList.length === 0 && isSearcher &&
+          <h2>No se encontraron Pokemon</h2>
+        }
         <div className='row row-cols-4'>
-
           {
             filterList.length > 0 || isSearcher ?
               (filterList.map((pokemon) => {
                 if (!pokemon.isBattle) {
+                  console.log('este');
                   return (
                     <CardPokemon key={ pokemon.id } pokemon={ pokemon } />
                   );
@@ -35,6 +38,8 @@ export const ListPokemon = () => {
               :
               (pokemonList.map((pokemon) => {
                 if (!pokemon.isBattle) {
+                  console.log('el otro');
+
                   return (
                     <CardPokemon key={ pokemon.id } pokemon={ pokemon } />
                   );
