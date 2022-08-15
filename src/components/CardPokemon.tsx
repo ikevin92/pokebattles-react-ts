@@ -37,13 +37,13 @@ export const CardPokemon: FC<Props> = ({ pokemon }) => {
         />
       <div
         onClick={ () => handleOnClick(id) }
-        className={ `card p-4 shadow ${ isHover ? 'bg-info' : '' }` }
+        className={ `card p-2 shadow ${ isHover ? 'bg-info' : '' }` }
         style={ { cursor: 'pointer' } }
         onMouseEnter={ handleMouseEnter }
         onMouseLeave={ handleMouseLeave }
       >
         <div className='p-4'>
-        <img src={ imagen } className="bd-placeholder-img card-img-top" alt={ nombre } />
+        <img src={ imagen } className="bd-placeholder-img w-75 card-img-top" alt={ nombre } />
         </div>
 
         <div className="card-body">
