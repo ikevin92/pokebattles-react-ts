@@ -4,7 +4,7 @@ import { loadPokemons, useAppDispatch, useAppSelector } from '../redux';
 
 export const ListPokemon = () => {
   const dispatch = useAppDispatch();
-  const { isLoading, pokemonList, filterList } = useAppSelector(state => state.pokemon);
+  const { isLoading, pokemonList, filterList, isSearcher } = useAppSelector(state => state.pokemon);
 
   useEffect(() => {
     if (pokemonList.length === 0) {
@@ -23,7 +23,7 @@ export const ListPokemon = () => {
         <div className='row row-cols-4'>
 
           {
-            filterList.length >0 ?
+            filterList.length > 0 || isSearcher ?
               (filterList.map((pokemon) => {
                 if (!pokemon.isBattle) {
                   return (

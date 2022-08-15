@@ -1,7 +1,7 @@
 import { loadPokemonByIdTerm, loadPokemonsApi } from '../../services';
 import { IPokemonState } from '../interfaces';
 import { Pokemon } from '../interfaces/pokemon';
-import { setLoading, setPokemonDetail, setPokemonFilterList, setPokemonList } from './pokemonSlice';
+import { setLoading, setPokemonDetail, setPokemonFilterList, setPokemonList, setSearcherValue } from './pokemonSlice';
 
 
 
@@ -25,6 +25,7 @@ export const addPokemonBattle = (id: string): any => {
       return pokemon;
     });
     dispatch(setPokemonList(newPokemonList));
+    dispatch(setSearcherValue(false));
     dispatch(setPokemonFilterList([]));
   };
 };
@@ -41,6 +42,8 @@ export const removePokemonBattle = (id: string) => {
     });
 
     dispatch(setPokemonList(newPokemonList));
+    dispatch(setSearcherValue(false));
+
   };
 };
 
@@ -56,8 +59,10 @@ export const searchPokemonForName = (value: string) => {
           return pokemon;
         }
       });
+      console.log(`🚀 ~ file: thunks.ts ~ line 59 ~ newPokemonList ~ newPokemonList`, newPokemonList);
       dispatch(setPokemonFilterList(newPokemonList));
-    }else{
+      // dispatch(setSearcherValue(true));
+    } else {
       dispatch(setPokemonFilterList([]));
     }
   };
@@ -69,5 +74,12 @@ export const getPokemonDetail = (id: string) => {
     const pokemon = await loadPokemonByIdTerm(id);
     dispatch(setPokemonDetail(pokemon));
     dispatch(setLoading(false));
-  }
-}
+  };
+};
+
+export const getValueSearcher = (value: boolean) => {
+  return (dispatch: any, getState: any) => {
+    dispatch(setSearcherValue(value));
+  };
+
+};

@@ -1,5 +1,5 @@
 import { ChangeEvent, useEffect, useState } from 'react';
-import { searchPokemonForName } from '../redux';
+import { getValueSearcher, searchPokemonForName } from '../redux';
 import { useAppDispatch, useAppSelector } from '../redux';
 
 
@@ -11,9 +11,13 @@ export const Searcher = () => {
 
   const handleOnChange = (e: ChangeEvent<HTMLInputElement>) => {
     setInputValue(e.target.value);
-    if (inputValue.length > 0) {
-      dispatch(searchPokemonForName(inputValue));
+
+    if (inputValue.length === 0) {
+      return dispatch(getValueSearcher(false));
     }
+    dispatch(searchPokemonForName(inputValue));
+    dispatch(getValueSearcher(true));
+
   };
 
   useEffect(() => {

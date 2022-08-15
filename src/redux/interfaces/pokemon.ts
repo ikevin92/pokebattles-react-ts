@@ -28,4 +28,5 @@ export interface IPokemonState {
   battleList: Pokemon[];
   filterList: Pokemon[];
   isLoading: boolean;
+  isSearcher: boolean;
 }
