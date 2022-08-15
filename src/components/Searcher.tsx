@@ -10,17 +10,17 @@ export const Searcher = () => {
   const { pokemonList } = useAppSelector(state => state.pokemon);
 
   const handleOnChange = (e: ChangeEvent<HTMLInputElement>) => {
+    let value = e.target.value.trim().toLowerCase();
 
-    if (e.target.value.trim().toLowerCase().length === 0) {
+    if (value.length === 0) {
       setInputValue('');
       dispatch(getValueSearcher(false));
-      return
+      return;
     }
 
-    setInputValue(e.target.value.trim().toLowerCase());
-    dispatch(searchPokemonForName(inputValue));
+    setInputValue(value);
+    dispatch(searchPokemonForName(value));
     dispatch(getValueSearcher(true));
-
   };
 
   useEffect(() => {
