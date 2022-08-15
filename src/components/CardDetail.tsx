@@ -9,7 +9,7 @@ const CardDetail: FC<Props> = ({pokemon}) => {
 
   return (
 
-    <div className="card shadow">
+    <div className="card shadow animate__animated animate__heartBeat">
       <img src={ pokemon.imagen } className="card-img-top" alt={ pokemon.nombre } />
       <div className="card-body bg-black">
         <h5 className="card-title text-capitalize">{ pokemon.nombre }

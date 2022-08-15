@@ -15,7 +15,7 @@ function App() {
         >
           <AppRouter />
         </div>
-        <div className='col-4 bg-primary'
+        <div className='col-4 bg-black'
         >
           <BattleView />
         </div>
