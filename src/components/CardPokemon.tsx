@@ -32,12 +32,12 @@ export const CardPokemon: FC<Props> = ({ pokemon }) => {
   const isActive = useMemo(() => pokemonList.filter(pokemon => pokemon.isBattle).length < 6, [pokemonList]);
 
   return (
-    <div className='col g-2 position-relative animate__animated animate__backInLeft'>
+    <div className='col g-3 position-relative animate__animated animate__backInLeft'>
         <ActionButton card id={ id } isBattle={ isBattle } isActive={ isActive }
         />
       <div
         onClick={ () => handleOnClick(id) }
-        className={ `card shadow ${ isHover ? 'bg-info' : '' }` }
+        className={ `card p-4 shadow ${ isHover ? 'bg-info' : '' }` }
         style={ { cursor: 'pointer' } }
         onMouseEnter={ handleMouseEnter }
         onMouseLeave={ handleMouseLeave }
