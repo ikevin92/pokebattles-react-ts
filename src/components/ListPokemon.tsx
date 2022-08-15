@@ -23,7 +23,7 @@ export const ListPokemon = () => {
           filterList.length === 0 && isSearcher &&
           <h2>No se encontraron Pokemon</h2>
         }
-        <div className='row row-cols-4'>
+        <div className='row row-cols-4 px-3'>
           {
             filterList.length > 0 || isSearcher ?
               (filterList.map((pokemon) => {

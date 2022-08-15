@@ -32,7 +32,7 @@ export const CardPokemon: FC<Props> = ({ pokemon }) => {
   const isActive = useMemo(() => pokemonList.filter(pokemon => pokemon.isBattle).length < 6, [pokemonList]);
 
   return (
-    <div className='col g-3 position-relative animate__animated animate__backInLeft'>
+    <div className='col g-2 position-relative animate__animated animate__backInLeft'>
         <ActionButton card id={ id } isBattle={ isBattle } isActive={ isActive }
         />
       <div
@@ -42,11 +42,11 @@ export const CardPokemon: FC<Props> = ({ pokemon }) => {
         onMouseEnter={ handleMouseEnter }
         onMouseLeave={ handleMouseLeave }
       >
-        <div className='p-4'>
+        <div className='p-1'>
         <img src={ imagen } className="bd-placeholder-img w-75 card-img-top" alt={ nombre } />
         </div>
 
-        <div className="card-body">
+        <div className="card-body p-0">
           <p className="card-text">{ nombre }</p>
         </div>
       </div>
