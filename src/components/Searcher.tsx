@@ -10,7 +10,7 @@ export const Searcher = () => {
   const { pokemonList } = useAppSelector(state => state.pokemon);
 
   const handleOnChange = (e: ChangeEvent<HTMLInputElement>) => {
-    setInputValue(e.target.value);
+    setInputValue(e.target.value.trim().toLowerCase());
 
     if (inputValue.length === 0) {
       return dispatch(getValueSearcher(false));
