@@ -4,7 +4,8 @@ import { IPokemonDetail, Pokemon } from '../redux';
 export const pokemonDetailAdapter = (pokemon: PokemonResponse): IPokemonDetail => {
 
   return {
-    imagen: pokemon.sprites.front_default,
+    // imagen: pokemon.sprites.front_default,
+    imagen: `https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/${ pokemon.id }.png`,
     nombre: pokemon.name,
     numero: pokemon.id,
     altura: pokemon.height,
