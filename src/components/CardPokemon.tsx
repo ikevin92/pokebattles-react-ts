@@ -42,7 +42,9 @@ export const CardPokemon: FC<Props> = ({ pokemon }) => {
         onMouseEnter={ handleMouseEnter }
         onMouseLeave={ handleMouseLeave }
       >
+        <div className='p-4'>
         <img src={ imagen } className="bd-placeholder-img card-img-top" alt={ nombre } />
+        </div>
 
         <div className="card-body">
           <p className="card-text">{ nombre }</p>
